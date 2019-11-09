@@ -11,14 +11,6 @@
 						<h3> User <strong>List</strong> </h3>
 					</span>
 
-					<span class="float-right">
-
-						<h5>
-							Welcome! <strong> {{ 'ruman' }} </strong>
-							<i class="far fa-smile text-info"></i>
-						</h5>
-
-					</span>
 
 				</div>
 

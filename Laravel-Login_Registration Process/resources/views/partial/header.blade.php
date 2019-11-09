@@ -22,7 +22,7 @@
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
-                            Profile <span class="caret"></span>
+                            Profile(<i>{{ Auth::user()->username }}</i>)<span class="caret"></span>
                         </a>
 
                         <ul class="dropdown-menu">
@@ -30,8 +30,9 @@
 
                             <a class="dropdown-item" href="{{ route('form.show') }}"><i class="fas fa-user-circle"></i> Add User</a>
 
+
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ route('logout') }}"
+                            <a class="dropdown-item text-danger" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
 
@@ -41,6 +42,7 @@
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
+
                         </ul>
                     </li>
 

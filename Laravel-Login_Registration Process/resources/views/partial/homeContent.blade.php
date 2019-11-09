@@ -21,7 +21,7 @@
                 <span class="float-right">
 
                     <h5>
-                        Welcome! <strong> {{ 'ruman' }} </strong>
+                        Welcome! <strong> {{ $authData->name }} </strong>
                         <i class="far fa-smile text-info"></i>
                     </h5>
 
@@ -64,11 +64,20 @@
                                 <td > {{ $value->phone }} </td>
                                 <td > {{ $value->gender }} </td>
                                 <td>
-                                    <a class="btn btn-info btn-sm" href="{{route('view.data',$value->id)}}">View</a>
 
-                                    <a class="btn btn-outline-secondary btn-sm" href="{{route('edit.data',$value->id)}}">Edit</a>
+                                    @if(Auth::user()->email == $value->email)
 
-                                    <a class="btn btn-danger btn-sm" href="{{route('delete.data',$value->id)}}" onclick="return confirm('Are you sure to delete?')">Delete</a>
+                                        <a class="btn btn-info btn-sm" href="{{route('view.data',$value->id)}}">View</a>
+
+                                        <a class="btn btn-outline-secondary btn-sm" href="{{route('edit.data',$value->id)}}">Edit</a>
+
+                                        <a class="btn btn-danger btn-sm" href="{{route('delete.data',$value->id)}}" onclick="return confirm('Are you sure to delete?')"> Delete </a>
+
+                                    @else
+                                        <a class="btn btn-info btn-sm" href="{{route('view.data',$value->id)}}">View</a>
+
+                                    @endif
+
 
                                 </td>
                             </tr>

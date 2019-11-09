@@ -15,18 +15,24 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'AdminController@readIndex')->name('index');
-Route::get('/homeContent', 'AdminController@readHome')->name('home.content');
 
+//route group as guard
+Route::group(['middleware'=>'userCheck'],function (){
 
-Route::get('/form/show','AdminController@formShow')->name('form.show');
-Route::post('/form/data','AdminController@formData')->name('form.data');
+    Route::get('/homeContent', 'AdminController@readHome')->name('home.content');
 
-Route::get('/edit/data/{id}','AdminController@edit')->name('edit.data');
-Route::post('/update/data/{id}','AdminController@update')->name('update.data');
+    Route::get('/form/show','AdminController@formShow')->name('form.show');
+    Route::post('/form/data','AdminController@formData')->name('form.data');
 
-Route::get('/delete/data/{id}','AdminController@delete')->name('delete.data');
+    Route::get('/edit/data/{id}','AdminController@edit')->name('edit.data');
+    Route::post('/update/data/{id}','AdminController@update')->name('update.data');
 
-Route::get('/view/data/{id}','AdminController@view')->name('view.data');
+    Route::get('/delete/data/{id}','AdminController@delete')->name('delete.data');
+
+    Route::get('/view/data/{id}','AdminController@view')->name('view.data');
+
+});
+
 
 
 //authenticates route

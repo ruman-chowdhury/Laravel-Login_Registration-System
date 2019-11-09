@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Admin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 session_start();
@@ -14,12 +15,16 @@ class AdminController extends Controller
 //===============read data=================
     public function readIndex(){
         $allData = Admin::all();
+
         return view('partial.indexContent',compact('allData'));
     }
 
     public function readHome(){
         $allData = Admin::all();
-        return view('partial.homeContent',compact('allData'));
+
+        $authData = Auth::user();
+
+        return view('partial.homeContent',compact(['allData','authData']));
     }
 
 //================create,insert==============
@@ -127,6 +132,7 @@ class AdminController extends Controller
 
 //=======================delete-======================
     public function delete($id){
+
         $row = Admin::find($id);
         $row->delete();
 
